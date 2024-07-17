@@ -3,10 +3,10 @@ import flet as ft
 from .tasks_containers import tasks_container
 
 def main_page(page, db_manager, add_task_callback, check_task_callback, tab_change_callback):
-    input_task = ft.TextField(hint_text="Digite aqui uma tarefa", expand=True, on_change=add_task_callback)
+    input_task = ft.TextField(hint_text="Digite aqui uma tarefa", expand=True, on_change=lambda e: add_task_callback(e, input_task))
 
     input_bar = ft.Row(
-        controll=[
+        controls=[
             input_task,
             ft.FloatingActionButton(icon=ft.icons.ADD, on_click=lambda e: add_task_callback(e, input_task))
         ]
@@ -17,8 +17,8 @@ def main_page(page, db_manager, add_task_callback, check_task_callback, tab_chan
         on_change=tab_change_callback,
         tabs=[
             ft.Tab(text="Todos"),
-            ft.Tab(text="Em Andamento"),
-            ft.Tab(text="Finalizando")
+            ft.Tab(text="Em andamento"),
+            ft.Tab(text="Finalizados")
         ],
     )
 
